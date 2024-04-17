@@ -1,4 +1,8 @@
-public class Main {
+package Advance.dev;
+
+import java.util.Scanner;
+
+public class MainApp {
     public static void main(String[] args) {
         Person[] persons = new Person[10];
 
@@ -15,7 +19,7 @@ public class Main {
         System.out.println("Lương: " + GVcoLuongCaoNhat.heSoLuong());
 
         // Tìm sinh viên có điểm trung bình cao nhất
-        Student SVcoDiemCaoNhat = timSVcoDiemCaonhat(persons);
+        Student SVcoDiemCaoNhat = timSVcoDiemCaoNhat(persons);
         System.out.println("Sinh viên có điểm trung bình cao nhất:");
         System.out.println("Tên: " + SVcoDiemCaoNhat.name);
         System.out.println("Điểm trung bình: " + SVcoDiemCaoNhat.diemTrungBinh());
@@ -73,11 +77,11 @@ public class Main {
             if (person instanceof Teacher) {
                 Teacher teacher = (Teacher) person;
                 System.out.println("Giáo viên: " + teacher.name);
-                System.out.println("Lương: " + teacher.calculateSalary());
+                System.out.println("Lương: " + teacher.heSoLuong());
             } else if (person instanceof Student) {
                 Student student = (Student) person;
                 System.out.println("Sinh viên: " + student.name);
-                System.out.println("Điểm trung bình: " + student.calculateAverage());
+                System.out.println("Điểm trung bình: " + student.diemTrungBinh());
             }
         }
     }
@@ -88,7 +92,7 @@ public class Main {
         for (Person person : persons) {
             if (person instanceof Teacher) {
                 Teacher teacher = (Teacher) person;
-                double salary = teacher.heSoLuong();
+                double luong = teacher.heSoLuong();
                 if (luong > luongCaoNhat) {
                     luongCaoNhat = luong;
                     GVcoLuongCaoNhat = teacher;
@@ -98,19 +102,19 @@ public class Main {
         return GVcoLuongCaoNhat;
     }
 
-    public static Student findHighestAverageStudent(Person[] persons) {
+    public static Student timSVcoDiemCaoNhat(Person[] persons) {
         Student SVcoDiemCaoNhat = null;
         double diemCaoNhat = 0;
         for (Person person : persons) {
             if (person instanceof Student) {
                 Student student = (Student) person;
-                double average = student.diemTrungBinh();
-                if (average > highestAverage) {
+                double diemTrungBinh = student.diemTrungBinh();
+                if (diemTrungBinh > diemCaoNhat) {
                     diemCaoNhat = diemTrungBinh;
-                    SVcoDiemTrungBinhCaoNhat = student;
+                    SVcoDiemCaoNhat = student;
                 }
             }
         }
-        return SVcoDiemTrungBinhCaoNhat;
+        return timSVcoDiemCaoNhat(persons);
     }
 }
