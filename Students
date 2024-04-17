@@ -1,72 +1,20 @@
-package advance.dev;
+class Student extends Person {
+    private double diemToan;
+    private double diemLy;
+    private double diemHoa;
+    private String MSV;
+    private String className;
 
-public class Student {
-    private String name;
-    private int age;
-    private String address;
-    private String phoneNumber;
-    private double GPA;
-
-    // Constructor
-    public Student() {
-        // Initialize attributes with default values
-        this.name = "";
-        this.age = 0;
-        this.address = "";
-        this.phoneNumber = "";
-        this.GPA = 0.0;
+    public Student(String name, int age, String phoneNumber, double diemToan, double diemLy, double diemHoa, String MSV, String className) {
+        super(name, age, phoneNumber);
+        this.diemToan = diemToan;
+        this.diemLy = diemLy;
+        this.diemHoa = diemHoa;
+        this.MSV = MSV;
+        this.className = className;
     }
 
-    // Getter and setter methods for 'name'
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // Getter and setter methods for 'age'
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        if (age > 0) {
-            this.age = age;
-        } else {
-            System.out.println("Invalid age! Age must be a positive integer.");
-        }
-    }
-
-    // Getter and setter methods for 'address'
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    // Getter and setter methods for 'phoneNumber'
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    // Getter and setter methods for 'GPA'
-    public double getGPA() {
-        return GPA;
-    }
-
-    public void setGPA(double GPA) {
-        if (GPA >= 0) {
-            this.GPA = GPA;
-        } else {
-            System.out.println("Diem khong hop le, gia tri cua diem phai lon hon hoac bang 0");
-        }
+    public double diemTrungBinh() {
+        return (diemToan + diemLy + diemHoa) / 3.0;
     }
 }
