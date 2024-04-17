@@ -1,108 +1,116 @@
-package basic.dev;
-import java.util.Scanner;
-
-public class MainApp {
-	public static void KiemTra(int n) {
-		if(n >= 0) {
-			System.out.println(n+ "Là Số Nguyên Dương");
-		}else {
-			System.out.println(n+ "Là Số Nguyên Âm");
-		}
-	}
-	public static void ChiaHetCho3(int n) {
-		for(int i = 1; i <= n; i++) {
-			if(i%3 == 0) {
-				System.out.println("Số chia hết cho 3:  "+i);
-			}
-		}
-	}
-	public static void ChiaHetCho5(int n) {
-		for(int i = 1; i <= n; i++) {
-			if(i%5 == 0) {
-				System.out.println("Số Chia Hết cho 5: "+i);
-			}
-		}
-	}
-	public static void NgayThangNam(int n) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Mời nhập vào thăng: ");
-		int thang = sc.nextInt();
-		switch(thang) {
-		case 1: 
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-		case 12:
-			System.out.println("Tháng"+thang+"có 31 ngày");
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			System.out.println("Tháng"+thang+"có 30 ngày");
-			break;
-		case 2:
-			System.out.print("Mời nhập năm: ");
-			int nam = sc.nextInt();
-			if((nam%4 == 0) && (nam%100 != 0) || (nam%400 == 0)) {
-				System.out.println("Tháng"+thang+"Năm"+nam+"có 29 ngày");
-			}else {
-				System.out.println("Tháng"+thang+"Năm"+nam+"có 28 ngày");
-			}
-			break;
-			default:
-				System.out.println("Không Hợp Lệ");
-				break;
-		}
-	}
-	public static void Ptbac2(int n) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Nhập a: ");
-		double a = sc.nextDouble();
-		System.out.print("Nhập b: ");
-		double b = sc.nextDouble();
-		System.out.print("Nhập c: ");
-		double c = sc.nextDouble();
-		double delta = Math.pow(b, 2) - (4 * a * c);
-		System.out.println("delta = "+delta);
-		if(delta < 0) {
-			System.out.println("Phương trình vô nghiệm");
-		}else if(delta == 0) {
-			double x = -b / (2 * a);
-			System.out.println("x= "+x);
-		}else if(delta > 0) {
-			double x1 = -b + Math.sqrt(delta) / (2 * a);
-			double x2 = -b - Math.sqrt(delta) / (2 * a);
-			System.out.println("Phương trình có 2 nghiệm: ");
-			System.out.println("x1= "+x1);
-			System.out.println("x2= "+x2);
-		}
-	}
-	public static void KiemTraCanhTamGiac(int n) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Nhập a: ");
-		int a = sc.nextInt();
-		System.out.print("Nhập b: ");
-		int b = sc.nextInt();
-		System.out.print("Nhập c: ");
-		int c = sc.nextInt();
-		if(a + b > c && b + c > a && a + c > b) {
-			System.out.println("Đúng Là Ba cạnh tam giác");
-		}else {
-			System.out.println("Không Phải Ba cạnh tam giác");
-		}
-	}
+public class Main {
     public static void main(String[] args) {
-    	Scanner sc = new Scanner(System.in);
-    	System.out.print("Nhập n: ");
-    	int n = sc.nextInt();
-    	KiemTra(n);
-    	ChiaHetCho3(n);
-    	ChiaHetCho5(n);
-      Ptbac2(n);
-      NgayThangNam(n);
-      KiemTraCanhTamGiac(n);
+        Person[] persons = new Person[10];
+
+        // Nhập thông tin cho mảng persons
+        input(persons);
+
+        // In ra thông tin của mảng persons
+        print(persons);
+
+        // Tìm giáo viên có lương cao nhất
+        Teacher highestPaidTeacher = findTeacher(persons);
+        System.out.println("Giáo viên có lương cao nhất:");
+        System.out.println("Tên: " + highestPaidTeacher.name);
+        System.out.println("Lương: " + highestPaidTeacher.calculateSalary());
+
+        // Tìm sinh viên có điểm trung bình cao nhất
+        Student highestAverageStudent = findHighestAverageStudent(persons);
+        System.out.println("Sinh viên có điểm trung bình cao nhất:");
+        System.out.println("Tên: " + highestAverageStudent.name);
+        System.out.println("Điểm trung bình: " + highestAverageStudent.calculateAverage());
+    }
+
+    public static void input(Person[] persons) {
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < persons.length; i++) {
+            if (i < 4) {
+                System.out.println("Nhập thông tin cho giáo viên thứ " + (i + 1) + ":");
+                System.out.print("Tên: ");
+                String name = scanner.nextLine();
+                System.out.print("Tuổi: ");
+                int age = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                System.out.print("Số điện thoại: ");
+                String phoneNumber = scanner.nextLine();
+                System.out.print("Mã giáo viên: ");
+                String maGV = scanner.nextLine();
+                System.out.print("Hệ số lương: ");
+                double salaryCoefficient = scanner.nextDouble();
+                scanner.nextLine(); // Consume newline
+
+                persons[i] = new Teacher(name, age, phoneNumber, teacherID, salaryCoefficient);
+            } else {
+                System.out.println("Nhập thông tin cho sinh viên thứ " + (i - 3) + ":");
+                System.out.print("Tên: ");
+                String name = scanner.nextLine();
+                System.out.print("Tuổi: ");
+                int age = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                System.out.print("Số điện thoại: ");
+                String phoneNumber = scanner.nextLine();
+                System.out.print("Điểm Toán: ");
+                double mathScore = scanner.nextDouble();
+                System.out.print("Điểm Lý: ");
+                double physicsScore = scanner.nextDouble();
+                System.out.print("Điểm Hóa: ");
+                double chemistryScore = scanner.nextDouble();
+                scanner.nextLine(); // Consume newline
+                System.out.print("Mã sinh viên: ");
+                String studentID = scanner.nextLine();
+                System.out.print("Lớp: ");
+                String className = scanner.nextLine();
+
+                persons[i] = new Student(name, age, phoneNumber, mathScore, physicsScore, chemistryScore, studentID, className);
+            }
+        }
+        scanner.close();
+    }
+
+    public static void print(Person[] persons) {
+        System.out.println("Danh sách các người:");
+        for (Person person : persons) {
+            if (person instanceof Teacher) {
+                Teacher teacher = (Teacher) person;
+                System.out.println("Giáo viên: " + teacher.name);
+                System.out.println("Lương: " + teacher.calculateSalary());
+            } else if (person instanceof Student) {
+                Student student = (Student) person;
+                System.out.println("Sinh viên: " + student.name);
+                System.out.println("Điểm trung bình: " + student.calculateAverage());
+            }
+        }
+    }
+
+    public static Teacher findTeacher(Person[] persons) {
+        Teacher highestPaidTeacher = null;
+        double highestSalary = 0;
+        for (Person person : persons) {
+            if (person instanceof Teacher) {
+                Teacher teacher = (Teacher) person;
+                double salary = teacher.calculateSalary();
+                if (salary > highestSalary) {
+                    highestSalary = salary;
+                    highestPaidTeacher = teacher;
+                }
+            }
+        }
+        return highestPaidTeacher;
+    }
+
+    public static Student findHighestAverageStudent(Person[] persons) {
+        Student highestAverageStudent = null;
+        double highestAverage = 0;
+        for (Person person : persons) {
+            if (person instanceof Student) {
+                Student student = (Student) person;
+                double average = student.calculateAverage();
+                if (average > highestAverage) {
+                    highestAverage = average;
+                    highestAverageStudent = student;
+                }
+            }
+        }
+        return highestAverageStudent;
     }
 }
