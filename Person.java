@@ -1,5 +1,7 @@
-class Person {
-    protected String name;
+package Advance.dev;
+
+public class Person {
+	protected String name;
     protected int age;
     protected String phoneNumber;
 
