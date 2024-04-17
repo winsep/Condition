@@ -9,16 +9,16 @@ public class Main {
         print(persons);
 
         // Tìm giáo viên có lương cao nhất
-        Teacher highestPaidTeacher = findTeacher(persons);
+        Teacher GVcoLuongCaoNhat = timGV(persons);
         System.out.println("Giáo viên có lương cao nhất:");
-        System.out.println("Tên: " + highestPaidTeacher.name);
-        System.out.println("Lương: " + highestPaidTeacher.calculateSalary());
+        System.out.println("Tên: " + GVcoLuongCaoNhat.name);
+        System.out.println("Lương: " + GVcoLuongCaoNhat.heSoLuong());
 
         // Tìm sinh viên có điểm trung bình cao nhất
-        Student highestAverageStudent = findHighestAverageStudent(persons);
+        Student SVcoDiemCaoNhat = timSVcoDiemCaonhat(persons);
         System.out.println("Sinh viên có điểm trung bình cao nhất:");
-        System.out.println("Tên: " + highestAverageStudent.name);
-        System.out.println("Điểm trung bình: " + highestAverageStudent.calculateAverage());
+        System.out.println("Tên: " + SVcoDiemCaoNhat.name);
+        System.out.println("Điểm trung bình: " + SVcoDiemCaoNhat.diemTrungBinh());
     }
 
     public static void input(Person[] persons) {
@@ -36,10 +36,10 @@ public class Main {
                 System.out.print("Mã giáo viên: ");
                 String maGV = scanner.nextLine();
                 System.out.print("Hệ số lương: ");
-                double salaryCoefficient = scanner.nextDouble();
+                double heSoLuong = scanner.nextDouble();
                 scanner.nextLine(); // Consume newline
 
-                persons[i] = new Teacher(name, age, phoneNumber, teacherID, salaryCoefficient);
+                persons[i] = new Teacher(name, age, phoneNumber, maGV, heSoLuong);
             } else {
                 System.out.println("Nhập thông tin cho sinh viên thứ " + (i - 3) + ":");
                 System.out.print("Tên: ");
@@ -50,18 +50,18 @@ public class Main {
                 System.out.print("Số điện thoại: ");
                 String phoneNumber = scanner.nextLine();
                 System.out.print("Điểm Toán: ");
-                double mathScore = scanner.nextDouble();
+                double diemToan = scanner.nextDouble();
                 System.out.print("Điểm Lý: ");
-                double physicsScore = scanner.nextDouble();
+                double diemLy = scanner.nextDouble();
                 System.out.print("Điểm Hóa: ");
-                double chemistryScore = scanner.nextDouble();
+                double diemHoa = scanner.nextDouble();
                 scanner.nextLine(); // Consume newline
                 System.out.print("Mã sinh viên: ");
-                String studentID = scanner.nextLine();
+                String MSV = scanner.nextLine();
                 System.out.print("Lớp: ");
                 String className = scanner.nextLine();
 
-                persons[i] = new Student(name, age, phoneNumber, mathScore, physicsScore, chemistryScore, studentID, className);
+                persons[i] = new Student(name, age, phoneNumber, diemToan, diemLy, diemHoa, MSV, className);
             }
         }
         scanner.close();
@@ -82,35 +82,35 @@ public class Main {
         }
     }
 
-    public static Teacher findTeacher(Person[] persons) {
-        Teacher highestPaidTeacher = null;
-        double highestSalary = 0;
+    public static Teacher timGV(Person[] persons) {
+        Teacher GVcoLuongCaoNhat = null;
+        double luongCaoNhat = 0;
         for (Person person : persons) {
             if (person instanceof Teacher) {
                 Teacher teacher = (Teacher) person;
-                double salary = teacher.calculateSalary();
-                if (salary > highestSalary) {
-                    highestSalary = salary;
-                    highestPaidTeacher = teacher;
+                double salary = teacher.heSoLuong();
+                if (luong > luongCaoNhat) {
+                    luongCaoNhat = luong;
+                    GVcoLuongCaoNhat = teacher;
                 }
             }
         }
-        return highestPaidTeacher;
+        return GVcoLuongCaoNhat;
     }
 
     public static Student findHighestAverageStudent(Person[] persons) {
-        Student highestAverageStudent = null;
-        double highestAverage = 0;
+        Student SVcoDiemCaoNhat = null;
+        double diemCaoNhat = 0;
         for (Person person : persons) {
             if (person instanceof Student) {
                 Student student = (Student) person;
-                double average = student.calculateAverage();
+                double average = student.diemTrungBinh();
                 if (average > highestAverage) {
-                    highestAverage = average;
-                    highestAverageStudent = student;
+                    diemCaoNhat = diemTrungBinh;
+                    SVcoDiemTrungBinhCaoNhat = student;
                 }
             }
         }
-        return highestAverageStudent;
+        return SVcoDiemTrungBinhCaoNhat;
     }
 }
