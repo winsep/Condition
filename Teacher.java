@@ -10,6 +10,6 @@ class Teacher extends Person {
 
     public double heSoLuong() {
         // Assuming a base salary is 10,000 units
-        return 10000 * heSoLuongt;
+        return 10000 * heSoLuong;
     }
 }
