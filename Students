@@ -1,0 +1,72 @@
+package advance.dev;
+
+public class Student {
+    private String name;
+    private int age;
+    private String address;
+    private String phoneNumber;
+    private double GPA;
+
+    // Constructor
+    public Student() {
+        // Initialize attributes with default values
+        this.name = "";
+        this.age = 0;
+        this.address = "";
+        this.phoneNumber = "";
+        this.GPA = 0.0;
+    }
+
+    // Getter and setter methods for 'name'
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter and setter methods for 'age'
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        } else {
+            System.out.println("Invalid age! Age must be a positive integer.");
+        }
+    }
+
+    // Getter and setter methods for 'address'
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    // Getter and setter methods for 'phoneNumber'
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    // Getter and setter methods for 'GPA'
+    public double getGPA() {
+        return GPA;
+    }
+
+    public void setGPA(double GPA) {
+        if (GPA >= 0) {
+            this.GPA = GPA;
+        } else {
+            System.out.println("Diem khong hop le, gia tri cua diem phai lon hon hoac bang 0");
+        }
+    }
+}
